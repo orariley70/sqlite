@@ -65,11 +65,14 @@ jobs:
                     -DSQLITE_DEFAULT_MEMSTATUS=0\
                     -DSQLITE_MAX_MMAP_SIZE=0
         
-                
-            - name: Create Release
-              uses: actions/create-release@v1
-              env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Get current date
+              id: date
+              run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+              
+            - name: Upload binaries to release
+              uses: svenstaro/upload-release-action@v2
               with:
-                tag_name: ${{ env.SQLITE_VERSION }}
-                release_name: Release ${{ env.SQLITE_VERSION }}
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: dist/sqlite3.exe
+                  asset_name: sqlite3.exe
+                  tag: ${{ steps.date.outputs.date }}
