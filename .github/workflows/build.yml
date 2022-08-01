@@ -70,3 +70,11 @@ jobs:
               uses: amitsingh-007/next-release-tag@v2.1.0
               with:
                 github_token: ${{ secrets.GITHUB_TOKEN }}
+                
+            - name: Create Release
+              uses: actions/create-release@v1
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                tag_name: ${{ env.release_tag }}
+                release_name: Release ${{ env.release_tag }}
