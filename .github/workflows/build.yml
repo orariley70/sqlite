@@ -64,11 +64,9 @@ jobs:
                     -DSQLITE_DEFAULT_PAGE_SIZE=65536\
                     -DSQLITE_DEFAULT_MEMSTATUS=0\
                     -DSQLITE_MAX_MMAP_SIZE=0
-                    
-            - name: Upload binaries to release
-              uses: svenstaro/upload-release-action@v2
+                
+             
+            - name: Auto Generate Next Release Tag
+              uses: amitsingh-007/next-release-tag@v2.1.0
               with:
-                  repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: dist/sqlite3.exe
-                  asset_name: sqlite3.exe
-                  tag: $(date +%Y%m%d%H%M)
+                github_token: ${{ secrets.GITHUB_TOKEN }}
