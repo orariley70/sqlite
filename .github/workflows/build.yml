@@ -5,7 +5,7 @@ on:
 
 env:
     SQLITE_RELEASE_YEAR: "2022"
-    SQLITE_VERSION: "3390100"
+    SQLITE_VERSION: "3390200"
 
 jobs:
     download-sources:
@@ -64,15 +64,12 @@ jobs:
                     -DSQLITE_DEFAULT_PAGE_SIZE=65536\
                     -DSQLITE_DEFAULT_MEMSTATUS=0\
                     -DSQLITE_MAX_MMAP_SIZE=0
-                
-   
-            - name: generate FOO unique variable based on timestamp
-              run: echo FOO=foobar--$(date +%s) >> $GITHUB_ENV
+        
                 
             - name: Create Release
               uses: actions/create-release@v1
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                tag_name: ${{ env.FOO }}
-                release_name: Release ${{ env.FOO }}
+                tag_name: ${{ env.SQLITE_VERSION }}
+                release_name: Release ${{ env.SQLITE_VERSION }}
