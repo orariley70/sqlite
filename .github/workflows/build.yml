@@ -71,4 +71,4 @@ jobs:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: dist/sqlite3.exe
                   asset_name: sqlite3.exe
-                  tag: ${{ env.SQLITE_VERSION }}
+                  tag: ${{ github.event.repository.updated_at}}
