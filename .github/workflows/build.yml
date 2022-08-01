@@ -65,10 +65,14 @@ jobs:
                     -DSQLITE_DEFAULT_MEMSTATUS=0\
                     -DSQLITE_MAX_MMAP_SIZE=0
                 
+   
+            - name: generate FOO unique variable based on timestamp
+              run: echo FOO=foobar--$(date +%s) >> $GITHUB_ENV
+                
             - name: Create Release
               uses: actions/create-release@v1
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                tag_name: ${{ github.sha }}
-                release_name: Release ${{ github.sha }}
+                tag_name: ${{ env.FOO }}
+                release_name: Release ${{ env.FOO }}
