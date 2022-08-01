@@ -54,7 +54,13 @@ jobs:
                     -DSQLITE_ENABLE_UNKNOWN_SQL_FUNCTION \
                     -DSQLITE_LIKE_DOESNT_MATCH_BLOBS \
                     -DSQLITE_THREADSAFE=0 \
-                    -DUSE_URI
+                    -DUSE_URI\
+                    -DSQLITE_MAX_LENGTH=2147483647\
+                    -DSQLITE_MAX_COLUMN=32767\
+                    -DSQLITE_MAX_SQL_LENGTH=1073741824\
+                    -DSQLITE_MAX_EXPR_DEPTH=0\
+                    -DSQLITE_MAX_FUNCTION_ARG=127\
+                    -DSQLITE_MAX_PAGE_COUNT=4294967294
 
             - name: Upload binaries to release
               uses: svenstaro/upload-release-action@v2
