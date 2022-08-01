@@ -1,9 +1,7 @@
 name: Build and publish
 
 on:
-    push:
-        tags:
-            - "*"
+    workflow_dispatch:
 
 env:
     SQLITE_RELEASE_YEAR: "2022"
@@ -68,7 +66,7 @@ jobs:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: dist/sqlite3-ubuntu
                   asset_name: sqlite3-ubuntu
-                  tag: ${{ github.ref }}
+                  tag: ${{ env.SQLITE_VERSION }}
 
     build-windows:
         name: Build for Windows
@@ -108,7 +106,7 @@ jobs:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: dist/sqlite3.exe
                   asset_name: sqlite3.exe
-                  tag: ${{ github.ref }}
+                  tag: ${{ env.SQLITE_VERSION }}
 
     build-macos:
         name: Build for macOS
@@ -152,4 +150,4 @@ jobs:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: dist/sqlite3-macos
                   asset_name: sqlite3-macos
-                  tag: ${{ github.ref }}
+                  tag: ${{ env.SQLITE_VERSION }}
