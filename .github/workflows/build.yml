@@ -60,8 +60,11 @@ jobs:
                     -DSQLITE_MAX_SQL_LENGTH=1073741824\
                     -DSQLITE_MAX_EXPR_DEPTH=0\
                     -DSQLITE_MAX_FUNCTION_ARG=127\
-                    -DSQLITE_MAX_PAGE_COUNT=4294967294
-
+                    -DSQLITE_MAX_PAGE_COUNT=4294967294\
+                    -DSQLITE_DEFAULT_PAGE_SIZE=65536\
+                    -DSQLITE_DEFAULT_MEMSTATUS=0\
+                    -DSQLITE_MAX_MMAP_SIZE=0
+                    
             - name: Upload binaries to release
               uses: svenstaro/upload-release-action@v2
               with:
