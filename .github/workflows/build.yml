@@ -65,18 +65,10 @@ jobs:
                     -DSQLITE_DEFAULT_MEMSTATUS=0\
                     -DSQLITE_MAX_MMAP_SIZE=0
                 
-            - name: Checkout branch
-              uses: actions/checkout@v2
-             
-            - name: Auto Generate Next Release Tag
-              uses: amitsingh-007/next-release-tag@v2.1.0
-              with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
-                
             - name: Create Release
               uses: actions/create-release@v1
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                tag_name: ${{ env.release_tag }}
-                release_name: Release ${{ env.release_tag }}
+                tag_name: ${{ github.event.repository.updated_at}}
+                release_name: Release ${{ github.event.repository.updated_at}}
